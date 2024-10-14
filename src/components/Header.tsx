@@ -10,10 +10,11 @@ const navItems = [
   { name: "Blog", path: "#blog" },
   { name: "Projetos", path: "#projects" },
 ];
-
-export default function Header() {
-  const [darkMode, setDarkMode] = useState(false);
-
+interface HeaderProps {
+  darkMode: boolean;
+  onDarkModeChange: React.Dispatch<React.SetStateAction<boolean>>;
+}
+export default function Header({ darkMode, onDarkModeChange }: HeaderProps) {
   useEffect(() => {
     if (darkMode) {
       document.documentElement.classList.add("dark");
@@ -37,7 +38,7 @@ export default function Header() {
             </MenuItem>
           ))}
           <button
-            onClick={() => setDarkMode(!darkMode)}
+            onClick={() => onDarkModeChange(!darkMode)}
             className="p-2 rounded-full bg-black/30 shadow-xl dark:bg-gray-700 text-gray-800 dark:text-gray-200"
           >
             {darkMode ? "🌞" : "🌙"}

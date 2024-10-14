@@ -12,7 +12,10 @@ export const data: Metadata = {
   title: "Matheus Migliani",
   description: "Personal portfolio and blog showcasing my work and thoughts",
 };
-
+interface LayoutProps {
+  darkMode: boolean;
+  onDarkModeChange: React.Dispatch<React.SetStateAction<boolean>>;
+}
 const inter = Inter({ subsets: ["latin"] });
 
 export default function RootLayout({
@@ -35,11 +38,11 @@ export default function RootLayout({
   return (
     <html lang="en" className={darkMode ? "dark" : ""}>
       <body
-        className={`${inter.className}  dark:bg-black text-gray-900 dark:text-white transition-colors duration-300`}
+        className={`${inter.className} dark:bg-black text-gray-900 dark:text-white transition-colors duration-300`}
       >
         <div className="flex flex-col min-h-screen">
-          <Header darkMode={darkMode} setDarkMode={setDarkMode} />
-          
+          <Header darkMode={darkMode} onDarkModeChange={setDarkMode} />
+
           <main className="flex-grow relative">
             <SparklesCore
               id="tsparticles"
