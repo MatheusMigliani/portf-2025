@@ -1,0 +1,14 @@
+
+:To do>
+- Melhorar carregamento do site - principal 
+- Criar um repositório para o portfólio
+- Hospedar o site
+- Deixar o site totalmente responsivo para dispositivos móveis
+- Adicionar comentários do LinkedIn
+- Linkar os projetos
+- Incluir um modal para detalhes do projeto com imagens e descrições
+- Integrar um sistema de filtragem de projetos por categoria
+- Otimizar imagens para uso na web e garantir acessibilidade
+- Adicionar uma animação de carregamento para os cards de projeto
+- Implementar um sistema de paginação para os projetos
+- Garantir que todos os links dos projetos sejam funcionais e levem a demonstrações ao vivo ou repositórios do GitHub
