@@ -27,8 +27,12 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const isDarkMode = localStorage.getItem("darkMode") === "true";
-    setDarkMode(isDarkMode);
+    const isDarkMode = localStorage.getItem("darkMode");
+    if (isDarkMode === null) {
+      localStorage.setItem("darkMode", "true");
+    } else {
+      setDarkMode(isDarkMode === "true");
+    }
   }, []);
 
   useEffect(() => {

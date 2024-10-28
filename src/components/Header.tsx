@@ -7,7 +7,6 @@ import { HoveredLink, Menu, MenuItem } from "@/components/ui/navbar-menu";
 const navItems = [
   { name: "Inicial", path: "/" },
   { name: "Sobre", path: "#about" },
-  { name: "Blog", path: "#blog" },
   { name: "Projetos", path: "#projects" },
 ];
 interface HeaderProps {
