@@ -1,19 +1,68 @@
-// src/app/page.tsx
 "use client";
+import dynamic from "next/dynamic";
+import { Suspense, useEffect, useState } from "react";
+import { Spinner } from "@/components/ui/spinner";
+import Header from "@/components/Header";
 
-import { HomeSection } from "@/components/home"; // {{ edit_1 }} Import HomeSection
-import { AboutSection } from "@/components/about"; // {{ edit_2 }} Import AboutSection
-import { ProjectsSection } from "@/components/projects"; // {{ edit_3 }} Import ProjectsSection
+interface LayoutProps {
+  darkMode: boolean;
+  onDarkModeChange: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const HomeSection = dynamic(
+  () => import("@/components/home").then((mod) => mod.HomeSection),
+  { ssr: false }
+);
+const AboutSection = dynamic(
+  () => import("@/components/about").then((mod) => mod.AboutSection),
+  { ssr: false }
+);
+const ProjectsSection = dynamic(
+  () => import("@/components/projects").then((mod) => mod.ProjectsSection),
+  { ssr: false }
+);
 
 export default function Home() {
-  // ... existing state and hooks ...
+  const [darkMode, setDarkMode] = useState(true);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const isDarkMode = localStorage.getItem("darkMode") === "true";
+    setDarkMode(isDarkMode);
+  }, []);
+
+  useEffect(() => {
+    document.documentElement.classList.toggle("dark", darkMode);
+    localStorage.setItem("darkMode", darkMode.toString());
+  }, [darkMode]);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => setLoading(false), 1000); // Adjust timeout as needed
+    return () => clearTimeout(timeout);
+  }, []);
 
   return (
     <div className="min-h-screen">
+      <Header darkMode={darkMode} onDarkModeChange={setDarkMode} />
       <main className="pt-20">
-        <HomeSection /> //
-        <AboutSection /> //
-        <ProjectsSection /> //
+        {loading ? (
+          <Spinner
+            className="transition-all ease-in-out animate-spin"
+            size={"medium"}
+          />
+        ) : (
+          <>
+            <Suspense fallback={<Spinner className="animate-spin" />}>
+              <HomeSection />
+            </Suspense>
+            <Suspense fallback={<Spinner className="animate-spin" />}>
+              <AboutSection />
+            </Suspense>
+            <Suspense fallback={<Spinner className="animate-spin" />}>
+              <ProjectsSection />
+            </Suspense>
+          </>
+        )}
       </main>
     </div>
   );

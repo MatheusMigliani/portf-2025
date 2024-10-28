@@ -1,57 +1,54 @@
-"use client";
-import { useState, useEffect } from "react";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { SparklesCore } from "@/components/ui/sparkles";
+import { Metadata } from "next";
 
-import type { Metadata } from "next";
-
-export const data: Metadata = {
-  title: "Matheus Migliani",
-  description: "Personal portfolio and blog showcasing my work and thoughts",
-};
-interface LayoutProps {
-  darkMode: boolean;
-  onDarkModeChange: React.Dispatch<React.SetStateAction<boolean>>;
-}
 const inter = Inter({ subsets: ["latin"] });
+
+export const metadata: Metadata = {
+  title: "Matheus Migliani - Full-stack Developer",
+  description:
+    "Personal portfolio and blog showcasing my work in web and mobile development",
+  openGraph: {
+    title: "Matheus Migliani - Full-stack Developer",
+    description:
+      "Personal portfolio and blog showcasing my work in web and mobile development",
+    url: "https://www.matheusmigliani.com",
+    siteName: "Matheus Migliani Portfolio",
+    images: [
+      {
+        url: "https://www.matheusmigliani.com/og-image.jpg",
+        width: 1200,
+        height: 630,
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+};
 
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const [darkMode, setDarkMode] = useState(false);
-
-  useEffect(() => {
-    const isDarkMode = localStorage.getItem("darkMode") === "true";
-    setDarkMode(isDarkMode);
-  }, []);
-
-  useEffect(() => {
-    document.documentElement.classList.toggle("dark", darkMode);
-    localStorage.setItem("darkMode", darkMode.toString());
-  }, [darkMode]);
-
   return (
-    <html lang="en" className={darkMode ? "dark" : ""}>
+    <html lang="en" className="scroll-smooth">
       <body
-        className={`${inter.className} dark:bg-black text-gray-900 dark:text-white transition-colors duration-300`}
+        className={`${inter.className} text-gray-900 dark:text-white transition-colors duration-300`}
       >
         <div className="flex flex-col min-h-screen">
-          <Header darkMode={darkMode} onDarkModeChange={setDarkMode} />
-
           <main className="flex-grow relative">
             <SparklesCore
               id="tsparticles"
               background="transparent"
               minSize={0.5}
-              maxSize={2}
-              particleDensity={100}
+              maxSize={1.5}
+              particleDensity={40}
               className="absolute top-0 left-0 w-full h-full -z-10"
-              particleColor={darkMode ? "#003D87FF" : "#3B82F6"}
+              particleColor="#003D87FF"
             />
             {children}
           </main>

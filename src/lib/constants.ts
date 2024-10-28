@@ -52,12 +52,12 @@ export const projects = [
     link: "https://trackman-next-js.vercel.app/",
   },
   {
-    title: "Trackman ERP",
-    tech: "Next.js, React, Node.js, Prisma, Stripe, Supabase, TailwindCSS",
+    title: "Telecall - Sistema Web Full-Stack",
+    tech: "PHP, Laravel, ViaCep API, SweetAlert",
     description:
-      "ERP robusto desenvolvido com Next.js e Node.js, integrando Stripe para pagamentos e Supabase para gestão de dados em tempo real.",
-    image: "/trackman-next-js.vercel.app_teams.png",
-    image2: "/trackman-next-js.vercel.app_dashboard.png",
-    link: "https://trackman-next-js.vercel.app/",
+      "Sistema web full-stack desenvolvido com PHP e Laravel, incluindo operações CRUD, autenticação, recuperação de senha e painel de controle com troca de senha. Integrado com APIs externas para otimizar usabilidade e segurança.",
+    image: "/telecall_dashboard.png",
+    image2: "/telecall_user_panel.png",
+    link: "https://example.com/telecall",
   },
 ];
