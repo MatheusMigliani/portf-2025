@@ -33,24 +33,25 @@ const ImageCarousel = ({ images }: { images: string[] }) => {
   return images.length > 1 ? (
     <Slider {...settings}>
       {images.map((image, index) => (
-        <div key={index} className="relative h-48">
+        <div key={index} className="relative h-56  ">
           <Image
             src={image}
-            layout="fill"
+            width={1000}
+            height={1000}
             objectFit="cover"
-            className="rounded-xl"
+            className="rounded-md"
             alt={`Project image ${index + 1}`}
           />
         </div>
       ))}
     </Slider>
   ) : (
-    <div className="relative h-48">
+    <div className="relative h-56   ">
       <Image
         src={images[0]}
-        layout="fill"
+        fill
         objectFit="cover"
-        className="rounded-xl"
+        className="rounded-md "
         alt="Project image"
       />
     </div>
@@ -146,7 +147,7 @@ export function ProjectsSection() {
     slidesToShow: slidesToShow,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 5000,
+    autoplaySpeed: 3000,
     arrows: false,
     responsive: [
       {
