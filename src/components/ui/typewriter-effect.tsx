@@ -28,19 +28,22 @@ export const TypewriterEffect = ({
   const isInView = useInView(scope);
   useEffect(() => {
     if (isInView) {
-      animate(
-        "span",
-        {
-          display: "inline-block",
-          opacity: 1,
-          width: "fit-content",
-        },
-        {
-          duration: 0.3,
-          delay: stagger(0.1),
-          ease: "easeInOut",
-        }
-      );
+      requestAnimationFrame(() => {
+        animate(
+          "span",
+          {
+            display: "inline-block",
+            opacity: 1,
+            transform: "translateY(0)", // Added for smoother animation
+            willChange: "opacity, transform", // Optimize rendering
+          },
+          {
+            duration: 0.2,
+            delay: stagger(0.05),
+            ease: "easeInOut",
+          }
+        );
+      });
     }
   }, [isInView]);
 
@@ -145,14 +148,15 @@ export const TypewriterEffectSmooth = ({
         className="overflow-hidden pb-2"
         initial={{
           width: "0%",
+          willChange: "width", // Optimize rendering
         }}
         whileInView={{
           width: "fit-content",
         }}
         transition={{
-          duration: 2,
-          ease: "linear",
-          delay: 1,
+          duration: 1.5,
+          ease: "easeInOut",
+          delay: 0.5,
         }}
       >
         <div
@@ -173,7 +177,6 @@ export const TypewriterEffectSmooth = ({
         }}
         transition={{
           duration: 0.8,
-
           repeat: Infinity,
           repeatType: "reverse",
         }}
